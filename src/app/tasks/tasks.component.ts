@@ -16,7 +16,13 @@ export class TasksComponent implements OnInit{
   userId = input.required<string>();
   order = input<'asc' | 'desc'>(); //extracting query params via signals
   private taskService = inject(TasksService);
-  userTasks = computed(()=>this.taskService.allTasks().filter((task)=> task.userId === this.userId()))
+  userTasks = computed(()=>this.taskService.allTasks().filter((task)=> task.userId === this.userId()).sort((a,b)=>{
+    if(this.order() == 'desc'){
+      return a.id > b.id ? -1 :1;
+    }else{
+      return a.id > b.id ? 1 :-1;
+    }
+  }))
 
   private activatedRoute = inject(ActivatedRoute);
 
