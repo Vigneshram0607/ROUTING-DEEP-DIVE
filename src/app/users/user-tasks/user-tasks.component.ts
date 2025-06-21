@@ -2,6 +2,8 @@ import { Component, computed, DestroyRef, inject, input, OnInit } from '@angular
 import { DUMMY_USERS } from '../../../dummy-users';
 import { UsersService } from '../users.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
+import { User } from '../user/user.model';
+import { TasksService } from '../../tasks/tasks.service';
 
 @Component({
   selector: 'app-user-tasks',

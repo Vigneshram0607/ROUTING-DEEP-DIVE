@@ -3,7 +3,7 @@ import { Component, computed, inject, input, OnInit } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { Task } from './task/task.model';
 import { TasksService } from './tasks.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -31,4 +31,9 @@ export class TasksComponent implements OnInit{
     console.log('ACTIVATED-ROUTE-SNAPSHOT: ',this.activatedRoute.snapshot);
     
   }
+}
+
+export const resolveUserTasks: ResolveFn<any> = (activatedRoute: ActivatedRouteSnapshot, routerState: RouterStateSnapshot)=>{
+  const tasksService = inject(TasksService);
+  return  tasksService.allTasks();
 }
