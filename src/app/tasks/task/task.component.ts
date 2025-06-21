@@ -23,7 +23,8 @@ export class TaskComponent {
     this.tasksService.removeTask(this.task().id);
     this.router.navigate(['./'], {
       relativeTo: this.activatedRoute,
-      onSameUrlNavigation: 'ignore'
+      onSameUrlNavigation: 'reload',
+      queryParamsHandling: 'preserve'
     })
   }
 }
